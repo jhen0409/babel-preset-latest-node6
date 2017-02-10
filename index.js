@@ -1,4 +1,4 @@
-module.exports = function preset(context, opts = {}) {
+function preset(context, opts = {}) {
   // See https://github.com/jhen0409/babel-preset-es2015-node6/blob/master/object-rest.js
   const es2015BuildPreset = !opts['object-rest'] ?
     require('babel-preset-es2015-node6').buildPreset :
@@ -11,3 +11,12 @@ module.exports = function preset(context, opts = {}) {
     ].filter(Boolean),
   };
 };
+
+module.exports = preset({});
+
+Object.defineProperty(module.exports, "buildPreset", {
+  configurable: true,
+  writable: true,
+  enumerable: false,
+  value: preset,
+});
